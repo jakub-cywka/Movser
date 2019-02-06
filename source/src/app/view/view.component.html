@@ -1,0 +1,136 @@
+<nav class='navbar fullwidth' role='navigation' aria-label='navigation'>
+  <div class='navbar-brand has-background-blue'>
+    <a routerLink='/search' class='navbar-item'>
+      <h1 class='title is-4 has-text-weight-normal has-text-light'>
+        Movser 🎥
+      </h1>
+    </a>
+    <a role='button' class='navbar-burger burger' aria-label='menu' aria-expanded='false' data-target='navbar'>
+      <span aria-hidden='true'></span>
+      <span aria-hidden='true'></span>
+      <span aria-hidden='true'></span>
+    </a>
+  </div>
+  <div id='navbar' class='navbar-menu has-background-purple'>
+    <div class='navbar-start'>
+      <span class='navbar-item is-1 has-margin-left-16'>
+        <div class='field'>
+          <div class='control has-icons-left'>
+            <input type='text' class='input is-medium is-rounded is-primary has-text-white has-background-transparent' [(ngModel)]='title' (keydown)='onKeydown($event)'>
+            <span class='icon is-small is-left'>
+              <i class='fas fa-search'>
+              </i>
+            </span>
+          </div>
+        </div>
+      </span>
+    </div>
+    <div class='navbar-end'>
+      <div class='navbar-item'>
+        <button (click)='goBack()' class='button is-primary is-large'>
+          Back ⬅
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class='fullwidth fullheight is-flex is-flex-column has-padding-horizontal-16 has-items-vertical-centered'>
+  <div class='container has-margin-top-64 fullheight is-flex is-flex-row has-items-horizontal-centered'>
+    <div class='columns is-variable is-0-mobile is-3-desktop is-8-widescreen is-3-fullhd fullwidth'>
+      <div class='column is-one-third has-padding-0'>
+        <figure class='image fullheight'>
+          <img [src]='result.Poster' />
+        </figure>
+      </div>
+      <div class='column is-two-thirds'>
+        <div class='is-flex is-flex-column has-items-horizontal-responsive has-text-aligned-responsive'>
+          <div class='is-flex is-flex-row is-mobile-flex-direction'>
+            <h1 class='title is-1 has-text-primary'>
+              {{result.Title}}
+            </h1>
+            <div class='has-margin-left-responsive has-items-horizontal-responsive has-text-aligned-responsive'>
+              <a href='https://www.imdb.com/title/{{result.imdbID}}' class='button is-large is-info' role='button'>
+                IMDb ➡
+              </a>
+            </div>
+          </div>
+          <div>
+            <nav class='level has-items-horizontal-responsive has-text-aligned-responsive'>
+              <div class='level-item is-flex has-items-horizontal-responsive has-text-aligned-responsive'>
+                <div class='is-flex is-flex-row'>
+                  <span class='icon'>
+                    <i class='fas fa-calendar-alt'>
+                    </i>
+                  </span>
+                  {{result.Released}}
+                </div>
+              </div>
+              <div class='level-item is-flex has-items-horizontal-responsive has-text-aligned-responsive'>
+                <div class='is-flex is-flex-row'>
+                  <span class='icon'>
+                    <i class='fas fa-user'>
+                    </i>
+                  </span>
+                  <p *ngIf='result.Director !== "N/A"'>
+                    {{result.Director}}
+                  </p>
+                  <p *ngIf='result.Director === "N/A"'>
+                    ?
+                  </p>
+                </div>
+              </div>
+              <div class='level-item is-flex has-items-horizontal-responsive has-text-aligned-responsive'>
+                <div class='is-flex is-flex-row'>
+                  <span class='icon'>
+                    <i class='far fa-clock'>
+                    </i>
+                  </span>
+                  {{result.Runtime}}
+                </div>
+              </div>
+              <div class='level-item is-flex has-items-horizontal-responsive has-text-aligned-responsive'>
+                <div class='is-flex is-flex-row'>
+                  <span class='icon'>
+                    <i class='fas fa-star'>
+                    </i>
+                  </span>
+                  {{result.Ratings[0].Value}}
+                </div>
+              </div>
+            </nav>
+            <section class='section has-items-horizontal-responsive is-paddingless has-text-aligned-responsive has-margin-top-16'>
+              <div class='has-text-aligned-responsive'>
+                <h1 class='title is-2'>
+                  Description
+                </h1>
+                <h2 class='subtitle is-4'>
+                  {{result.Plot}}
+                </h2>
+              </div>
+            </section>
+            <section class='section has-text-aligned-responsive has-items-horizontal-responsive is-paddingless has-margin-top-16'>
+              <div class='has-text-aligned-responsive'>
+                  <h1 class='title is-2'>
+                    Crew
+                  </h1>
+                  <h2 class='subtitle is-4'>
+                    Crew made from {{result.Actors}}
+                  </h2>
+              </div>
+            </section>
+            <section class='section has-text-aligned-responsive has-items-horizontal-responsive is-paddingless has-margin-top-16'>
+              <div class='has-text-aligned-responsive'>
+                <h1 class='title is-2'>
+                  Rating 🏆
+                </h1>
+                <h2 *ngFor='let rating of result.Ratings' class='subtitle is-4'>
+                  {{rating.Value}} by "{{rating.Source}}"
+                </h2>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,107 @@
+<nav class='navbar fullwidth' role='navigation' aria-label='navigation'>
+  <div class='navbar-brand has-background-blue'>
+    <a routerLink='/search' class='navbar-item'>
+      <h1 class='title is-4 has-text-weight-normal has-text-light'>
+        Movser 🎥
+      </h1>
+    </a>
+    <a role='button' class='navbar-burger burger' aria-label='menu' aria-expanded='false' data-target='navbar'>
+      <span aria-hidden='true'></span>
+      <span aria-hidden='true'></span>
+      <span aria-hidden='true'></span>
+    </a>
+  </div>
+  <div id='navbar' class='navbar-menu has-background-purple'>
+    <div class='navbar-start'>
+      <span class='navbar-item is-1 has-margin-left-16'>
+        <div class='field'>
+          <div class='control has-icons-left'>
+            <input type='text' class='input is-medium is-rounded is-primary has-text-white has-background-transparent' [(ngModel)]='title' (keydown)='onKeydown($event)'>
+            <span class='icon is-small is-left'>
+              <i class='fas fa-search'>
+              </i>
+            </span>
+          </div>
+        </div>
+      </span>
+    </div>
+  </div>
+</nav>
+<div class='fullwidth fullheight has-padding-horizontal-16 is-flex is-flex-column has-items-vertical-centered'>
+  <!-- <div class='fullwidth is-flex is-flex-column has-items-centered has-margin-top-64'> -->
+    <!-- <h1 class='title'>
+      Popular
+    </h1>
+    <div class='fullwidth fullheight is-grid is-grid-responsive'>
+      <div *ngFor='let movie of datas' class='fullwidth fullheight button has-padding-0'>
+        <div (click)='navigateByMovie(movie)' class='card fullwidth fullheight'>
+          <div class='card-image'>
+            <figure class='image'>
+              <img [src]='movie.data.Poster' [alt]='movie.data.Title' />
+            </figure>
+          </div>
+          <div class='card-content'>
+            <div class='media has-text-centered'>
+              <div class='media-content has-text-centered'>
+                <p class='title is-4'>
+                  {{movie.data.Title}}
+                </p>
+                <p *ngIf='movie.data.Director !== "N/A"' class='subtitle is-6'>
+                  Author<br />
+                  {{movie.data.Director}}
+                </p>
+                <p class='subtitle is-6' *ngIf='movie.data.Director === "N/A"'>
+                  Author<br />
+                  Not defined
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  <!-- </div> -->
+  <section class='section'>
+    <div class='container'>
+      <h1 class='title'>
+        Looking for some film?
+      </h1>
+      <h2 class='subtitle'>
+        How about&nbsp;<a (click)='navigateByClick(movies[randomIndex])' class='is-link'>{{movies[randomIndex].title}}</a>
+      </h2>
+      <div (click)='navigateByClick(movies[randomIndex])' class='columns'>
+        <div class='column has-padding-0 fullheight is-one-third'>
+          <div class='card fullheight'>
+            <div class='card-image'>
+              <figure class='image'>
+                <img [src]='randomMovie.Poster' [alt]='randomMovie.Title' />
+              </figure>
+            </div>
+          </div>
+        </div>
+        <div class='column box is-two-thirds'>
+          <div class='fullheight is-flex has-items-vertical-centered has-text-justified is-flex-column'>
+            <h1 class='title is-1 has-margin-top-64'>
+              {{randomMovie.Title}}
+            </h1>
+            <h2 *ngIf='randomMovie.Director !== "N/A"' class='subtitle is-3'>
+              By {{randomMovie.Director}}
+            </h2>
+            <h3 class='subtitle is-5'>
+              {{randomMovie.Plot}}
+            </h3>
+            <h3 class='subtitle is-5'>
+              Crew made from {{randomMovie.Actors}}
+            </h3>
+            <h3 class='subtitle is-3'>
+              Internet review 🏆
+            </h3>
+            <h3 class='subtitle is-flex is-flex-rows is-5'>
+              <h3 class='has-text-weight-bold'>"{{randomMovie.Ratings[0].Source}}"</h3>&nbsp;has given {{randomMovie.Ratings[0].Value}} grade for this film
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

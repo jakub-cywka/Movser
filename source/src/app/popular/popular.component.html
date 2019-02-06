@@ -1,0 +1,69 @@
+<nav class='navbar fullwidth' role='navigation' aria-label='navigation'>
+  <div class='navbar-brand has-background-blue'>
+    <a routerLink='/search' class='navbar-item'>
+      <h1 class='title is-4 has-text-weight-normal has-text-light'>
+        Movser 🎥
+      </h1>
+    </a>
+    <a role='button' class='navbar-burger burger' aria-label='menu' aria-expanded='false' data-target='navbar'>
+      <span aria-hidden='true'></span>
+      <span aria-hidden='true'></span>
+      <span aria-hidden='true'></span>
+    </a>
+  </div>
+  <div id='navbar' class='navbar-menu has-background-purple'>
+    <div class='navbar-start'>
+      <span class='navbar-item is-1 has-margin-left-16'>
+        <div class='field'>
+          <div class='control has-icons-left'>
+            <input type='text' class='input is-medium is-rounded is-primary has-text-white has-background-transparent' [(ngModel)]='title' (keydown)='onKeydown($event)'>
+            <span class='icon is-small is-left'>
+              <i class='fas fa-search'>
+              </i>
+            </span>
+          </div>
+        </div>
+      </span>
+    </div>
+    <div class='navbar-end'>
+      <div class='navbar-item'>
+        <button (click)='goBack()' class='button is-primary is-large'>
+          Back ⬅
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class='container is-flex is-flex-column has-items-centered has-margin-top-64'>
+  <h1 class='title'>
+    Popular
+  </h1>
+  <div class='fullwidth fullheight is-grid is-grid-responsive'>
+    <div role='button' *ngFor='let movie of datas' class='fullheight'>
+      <div (click)='navigateByMovie(movie)' class='card fullwidth fullheight'>
+        <div class='card-image'>
+          <figure class='image'>
+            <img [src]='movie.data.Poster' [alt]='movie.data.Title' />
+          </figure>
+        </div>
+        <div class='card-content'>
+          <div class='media has-text-centered'>
+            <div class='media-content has-text-centered'>
+              <p class='title is-4'>
+                {{movie.data.Title}}
+              </p>
+              <p *ngIf='movie.data.Director !== "N/A"' class='subtitle is-6'>
+                Author<br />
+                {{movie.data.Director}}
+              </p>
+              <p class='subtitle is-6' *ngIf='movie.data.Director === "N/A"'>
+                Author<br />
+                Not defined
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
